@@ -1,0 +1,27 @@
+$primary-light-cyan: hsl(193, 38%, 86%);
+$primary-neon-green: hsl(150, 100%, 66%);
+$neutral-greyish-blue: hsl(217, 19%, 38%);
+$neutral-dark-greyish-blue: hsl(217, 19%, 24%);
+$neutral-dark-blue: hsl(218, 23%, 16%);
+
+$colors: (
+  'primary-light-cyan': $primary-light-cyan,
+  'primary-neon-green': $primary-neon-green,
+  'neutral-greyish-blue': $neutral-greyish-blue,
+  'neutral-dark-greyish-blue': $neutral-dark-greyish-blue,
+  'neutral-dark-blue': $neutral-dark-blue
+);
+
+@each $color-name, $color-value in $colors {
+  .text-#{$color-name} {
+    color: $color-value;
+  }
+
+  .bg-color-#{$color-name} {
+    background-color: $color-value;
+  }
+
+  .border-#{$color-name} {
+    border: 1px solid $color-value;
+  }
+}
