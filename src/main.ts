@@ -1,11 +1,11 @@
 import './style.scss'
 import $app from '@constants/app';
-import Button from '@elements/Button';
+import Container from '@elements/Container';
 
-const button = new Button({}).buttonElement;
+const $container = new Container().containerElement;
 
-if(button) {
-  $app?.appendChild(button);
+if($container) {
+  $app?.appendChild($container);
 }
 
 
