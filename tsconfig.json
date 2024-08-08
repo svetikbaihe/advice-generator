@@ -18,7 +18,40 @@
     "strict": true,
     "noUnusedLocals": true,
     "noUnusedParameters": true,
-    "noFallthroughCasesInSwitch": true
+    "noFallthroughCasesInSwitch": true,
+
+    "typeRoots": ["node_modules/@types", "types/"],
+
+    "baseUrl": "./src",
+    "paths": {
+      "@components": ["./components"],
+      "@components/*": ["./components/*"],
+
+      "@utils": ["./utils"],
+      "@utils/*": ["./utils/*"],
+
+      "@constants": ["./constants"],
+      "@constants/*": ["./constants/*"],
+
+      "@elements": ["./elements"],
+      "@elements/*": ["./elements/*"],
+
+      "@modules": ["./modules"],
+      "@modules/*": ["./modules/*"],
+
+      "@services": ["./services"],
+      "@services/*": ["./services/*"],
+
+      "@customTypes": ["./customTypes"],
+      "@customTypes/*": ["./customTypes/*"],
+
+      "@assets": ["src/assets"],
+      "@assets/*": ["src/assets/*"]
+    },
   },
-  "include": ["src"]
+  
+  "homepage": ".",
+  "include": ["src"],
+  "exclude": ["node_modules"],
+  "references": [{ "path": "./tsconfig.node.json" }]
 }
