@@ -1,6 +1,5 @@
 import styles from './styles.module.scss';
 import { type CardConstructor, CardInterface, CardType } from './types';
-import Button, { type ButtonInterface } from '@elements/Button';
 
 class Card implements CardInterface {
   protected headline: string = '';
@@ -8,13 +7,14 @@ class Card implements CardInterface {
   protected img: string = '';
   protected type: CardType = 'filled'
   protected $card: HTMLElement | null = null;
-  protected button: ButtonInterface | null = null;
+  protected button: HTMLElement | null = null;
 
   constructor({
     headline,
     supportingText,
     type,
-    img
+    img,
+    button
   }: CardConstructor) {
     this.type = type;
 
@@ -30,7 +30,9 @@ class Card implements CardInterface {
       this.img = img;
     }
 
-    this.button = new Button({});
+    if (button) {
+      this.button = button;
+    }
 
     this.buildCard();
   }
@@ -108,8 +110,8 @@ class Card implements CardInterface {
 
     $mediaArea.appendChild($divider);
 
-    if(this.button?.buttonElement) {
-      $mediaArea?.appendChild(this.button.buttonElement)
+    if(this.button) {
+      $mediaArea?.appendChild(this.button)
     }
 
     return $mediaArea;

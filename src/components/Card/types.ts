@@ -7,6 +7,7 @@ export interface CardConstructor {
   headline?: string
   supportingText?: string
   img?: string
+  button?: HTMLElement | null
 }
 
 export type CardType = 

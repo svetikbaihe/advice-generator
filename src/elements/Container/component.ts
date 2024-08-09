@@ -2,6 +2,7 @@ import styles from './styles.module.scss';
 import { ContainerInterface } from "./types";
 import Card, { type CardInterface } from '@components/Card';
 import AdviceAPI, { type AdviceAPIInterface } from '@services/AdviceAPI';
+import Button, { type ButtonInterface } from '@elements/Button';
 
 class Container implements ContainerInterface{
   protected $container: HTMLElement | null = null;
@@ -9,11 +10,12 @@ class Container implements ContainerInterface{
   protected api: AdviceAPIInterface;
   protected id: number = 0;
   protected adviceMessage: string = '';
+  protected button: ButtonInterface | null = null;
 
   constructor() {
 
     this.api = new AdviceAPI();
-
+    this.button = new Button({onClick: () => this.handleFetchAdvice()})
     this.buildContainer();
     this.handleFetchAdvice();
   }
@@ -23,6 +25,8 @@ class Container implements ContainerInterface{
   }
 
   protected handleFetchAdvice = async () => {
+    this.card?.cardElement?.remove()
+    
     const data = await this.api.getAdvice();
     
     this.id = data?.slip.id ?? 0
@@ -32,7 +36,8 @@ class Container implements ContainerInterface{
       headline: `Advice # ${this.id}`,
       supportingText: `${this.adviceMessage}`,
       type: 'filled',
-      img: 'src/assets/svg/pattern-divider-desktop.svg'
+      img: 'src/assets/svg/pattern-divider-desktop.svg',
+      button: this.button?.buttonElement
     });
 
     if(this.card?.cardElement) {
