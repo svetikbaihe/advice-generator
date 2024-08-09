@@ -393,6 +393,11 @@ rollup@^4.13.0:
     "@rollup/rollup-win32-x64-msvc" "4.20.0"
     fsevents "~2.3.2"
 
+sass-migrator@^2.0.3:
+  version "2.0.3"
+  resolved "https://registry.yarnpkg.com/sass-migrator/-/sass-migrator-2.0.3.tgz#b80127f245ba3e4557b9d9cac85a7a8e42a6cc49"
+  integrity sha512-WaLQorgSz06q7/M+QNqkyn4d6m3NBQXFx93Ukrw88k108mIKOjBgSvyTerMpZ+5ogOJwrK82rxLBzA1J5azmJQ==
+
 sass@^1.77.8:
   version "1.77.8"
   resolved "https://registry.yarnpkg.com/sass/-/sass-1.77.8.tgz#9f18b449ea401759ef7ec1752a16373e296b52bd"
