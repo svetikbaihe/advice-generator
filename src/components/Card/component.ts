@@ -1,38 +1,39 @@
 import styles from './styles.module.scss';
 import { type CardConstructor, CardInterface, CardType } from './types';
-import Button, { type ButtonInterface } from '@elements/Button';
 
 class Card implements CardInterface {
-  protected headline: string = '';
-  protected supportingText: string = '';
+  protected headlineText: string = '';
+  protected supportingMessage: string = '';
   protected img: string = '';
-  protected type: CardType = 'filled'
+  protected type: CardType = 'filled';
   protected $card: HTMLElement | null = null;
-  protected button: ButtonInterface | null = null;
+  protected button: HTMLElement | null = null;
+  protected $headlineElement: HTMLElement | null = null;
+  protected $supportingTextElement: HTMLElement | null = null;
 
   constructor({
-    headline,
-    supportingText,
     type,
-    img
+    img,
+    button
   }: CardConstructor) {
     this.type = type;
+    this.img = img ?? '';
 
-    if(headline) {
-      this.headline = headline;
+    if (button) {
+      this.button = button;
     }
-
-    if(supportingText) {
-      this.supportingText = supportingText;
-    }
-
-    if(img) {
-      this.img = img;
-    }
-
-    this.button = new Button({});
 
     this.buildCard();
+  }
+
+  public set headline(headline: string) {
+    this.headlineText = headline;
+    this.updateHeadline(`Advice # ${this.headlineText}`);
+  }
+
+  public set supportingText(supportingText: string) {
+    this.supportingMessage = supportingText;
+    this.updateSupportingText(this.supportingMessage);
   }
 
   public get cardElement() {
@@ -72,29 +73,24 @@ class Card implements CardInterface {
     ].join(' ');
 
     const $headline = document.createElement('h1');
-
     $headline.className = [
       styles.headline,
       'text-primary-neon-green'
     ].join(' ');
+    $headline.innerText = this.headline;
 
     const $supportingText = document.createElement('p');
-
     $supportingText.className = [
       styles.supporting_text,
       'font-s-14'
     ].join(' ');
-
-    if(this.headline) {
-      $headline.innerText = this.headline;
-    }
-
-    if(this.supportingText) {
-      $supportingText.innerText = this.supportingText;
-    }
+    $supportingText.innerText = this.supportingText;
 
     $textArea.appendChild($headline);
     $textArea.appendChild($supportingText);
+
+    this.$headlineElement = $headline;
+    this.$supportingTextElement = $supportingText;
 
     return $textArea;
   }
@@ -103,17 +99,29 @@ class Card implements CardInterface {
     const $mediaArea = document.createElement('div');
 
     const $divider = document.createElement('img');
-
-    $divider.setAttribute('src', `${this.img}`)
+    $divider.setAttribute('src', `${this.img}`);
 
     $mediaArea.appendChild($divider);
 
-    if(this.button?.buttonElement) {
-      $mediaArea?.appendChild(this.button.buttonElement)
+    if(this.button) {
+      $mediaArea.appendChild(this.button);
     }
 
     return $mediaArea;
   }
+
+  protected updateHeadline(newHeadline: string) {
+    if (this.$headlineElement) {
+      this.$headlineElement.innerText = newHeadline;
+    }
+  }
+
+  protected updateSupportingText(newText: string) {
+    if (this.$supportingTextElement) {
+      this.$supportingTextElement.innerText = newText;
+    }
+  }
 }
+
 
 export default Card;
