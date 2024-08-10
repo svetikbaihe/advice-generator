@@ -1,11 +1,11 @@
 export interface CardInterface {
+  supportingText: string
+  headline: string
   cardElement: HTMLElement | null
 }
 
 export interface CardConstructor {
   type: CardType
-  headline?: string
-  supportingText?: string
   img?: string
   button?: HTMLElement | null
 }
