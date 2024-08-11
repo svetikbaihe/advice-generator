@@ -1,10 +1,9 @@
 import styles from './styles.module.scss';
-import { type CardConstructor, CardInterface, CardType } from './types';
+import type { CardConstructor, CardInterface, CardType } from './types';
 
 class Card implements CardInterface {
   protected headlineText: string = '';
   protected supportingMessage: string = '';
-  protected img: string = '';
   protected type: CardType = 'filled';
   protected $card: HTMLElement | null = null;
   protected button: HTMLElement | null = null;
@@ -13,11 +12,9 @@ class Card implements CardInterface {
 
   constructor({
     type,
-    img,
     button
   }: CardConstructor) {
     this.type = type;
-    this.img = img ?? '';
 
     if (button) {
       this.button = button;
@@ -77,14 +74,14 @@ class Card implements CardInterface {
       styles.headline,
       'text-primary-neon-green'
     ].join(' ');
-    $headline.innerText = this.headline;
+    $headline.innerText = this.headlineText;
 
     const $supportingText = document.createElement('p');
     $supportingText.className = [
       styles.supporting_text,
       'font-s-14'
     ].join(' ');
-    $supportingText.innerText = this.supportingText;
+    $supportingText.innerText = this.supportingMessage;
 
     $textArea.appendChild($headline);
     $textArea.appendChild($supportingText);
@@ -98,10 +95,9 @@ class Card implements CardInterface {
   protected buildMediaArea = () => {
     const $mediaArea = document.createElement('div');
 
-    const $divider = document.createElement('img');
-    $divider.setAttribute('src', `${this.img}`);
-
-    $mediaArea.appendChild($divider);
+    $mediaArea.className = [
+      styles.media_area
+    ].join(' ');
 
     if(this.button) {
       $mediaArea.appendChild(this.button);

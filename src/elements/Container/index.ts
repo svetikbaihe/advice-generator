@@ -1,5 +1,6 @@
 export { default } from './component';
 
 export {
-  type ContainerInterface
+  type ContainerInterface,
+  type ContainerConstructor
 }from './types';
