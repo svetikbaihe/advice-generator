@@ -32,3 +32,19 @@
   text-wrap: balance;
   font-weight: 800;
 }
+
+.media_area{
+  background: url('../../assets/svg/pattern-divider-desktop.svg') no-repeat center;
+  width: 544px;
+  height: 20px;
+}
+
+@media only screen and (max-width: 645px){
+  .card {
+    width: 342px;
+  }
+
+  .media_area{
+    background: url('../../assets/svg/pattern-divider-mobile.svg') no-repeat center;
+  }
+}

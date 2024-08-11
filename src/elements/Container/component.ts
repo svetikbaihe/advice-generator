@@ -1,45 +1,20 @@
 import styles from './styles.module.scss';
-import { ContainerInterface } from "./types";
-import Card, { type CardInterface } from '@components/Card';
-import AdviceAPI, { type AdviceAPIInterface } from '@services/AdviceAPI';
-import Button, { type ButtonInterface } from '@elements/Button';
+import type { ContainerInterface, ContainerConstructor } from "./types";
 
 class Container implements ContainerInterface {
   protected $container: HTMLElement | null = null;
-  protected card: CardInterface | null = null;
-  protected api: AdviceAPIInterface;
-  protected id: number = 0;
-  protected adviceMessage: string = '';
-  protected button: ButtonInterface | null = null;
+  protected $element: HTMLElement | null = null;
 
-  constructor() {
-    this.api = new AdviceAPI();
-    this.button = new Button({ onClick: () => this.handleFetchAdvice() });
-
-    this.card = new Card({
-      type: 'filled',
-      img: 'src/assets/svg/pattern-divider-desktop.svg',
-      button: this.button?.buttonElement
-    });
+  constructor({element}: ContainerConstructor) {
+    if(element) {
+      this.$element = element
+    }
 
     this.buildContainer();
-    this.handleFetchAdvice();
   }
 
   public get containerElement() {
     return this.$container;
-  }
-
-  protected handleFetchAdvice = async () => {
-    const data = await this.api.getAdvice();
-
-    this.id = data?.slip.id ?? 0;
-    this.adviceMessage = data?.slip.advice ?? '';
-
-    if (this.card) {
-      this.card.headline = this.id.toString();
-      this.card.supportingText = this.adviceMessage;
-    }
   }
 
   protected buildContainer = () => {
@@ -54,8 +29,8 @@ class Container implements ContainerInterface {
       'f-align-items-center'
     ].join(' ');
 
-    if (this.card?.cardElement) {
-      $container.appendChild(this.card.cardElement);
+    if (this.$element) {
+      $container?.appendChild(this.$element);
     }
 
     this.$container = $container;
