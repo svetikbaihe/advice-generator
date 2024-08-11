@@ -30,7 +30,7 @@ class Button implements ButtonInterface {
 
     const $buttonIcon = document.createElement('img');
 
-    $buttonIcon.setAttribute('src', 'src/assets/svg/icon-dice.svg');
+    $buttonIcon.setAttribute('src', 'icon-dice.svg');
 
     $button.appendChild($buttonIcon);
 
