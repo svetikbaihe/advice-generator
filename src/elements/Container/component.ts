@@ -1,5 +1,5 @@
-import styles from './styles.module.scss';
 import type { ContainerInterface, ContainerConstructor } from "./types";
+import styles from './styles.module.scss';
 
 class Container implements ContainerInterface {
   protected $container: HTMLElement | null = null;
@@ -20,14 +20,7 @@ class Container implements ContainerInterface {
   protected buildContainer = () => {
     const $container = document.createElement('div');
 
-    $container.className = [
-      styles.container,
-      'bg-color-neutral-dark-blue',
-      'hg-100vh',
-      'd-flex',
-      'f-just-content-center',
-      'f-align-items-center'
-    ].join(' ');
+    $container.className = styles['container'];
 
     if (this.$element) {
       $container?.appendChild(this.$element);

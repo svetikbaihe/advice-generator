@@ -1,5 +1,5 @@
-import styles from './styles.module.scss';
 import type { ButtonConstructor, ButtonInterface } from "./types";
+import styles from './styles.module.scss';
 
 class Button implements ButtonInterface {
   protected handleClick: VoidFunction = () => {};
@@ -20,17 +20,13 @@ class Button implements ButtonInterface {
   protected buildButton = () => {
     const $button = document.createElement('button');
 
-    $button.className = [
-      styles.button,
-      'padd-10',
-      'bg-color-primary-neon-green'
-    ].join(' ');
+    $button.className = styles['button']
 
     $button.addEventListener('click', () => this.handleClick());
 
     const $buttonIcon = document.createElement('img');
 
-    $buttonIcon.setAttribute('src', 'icon-dice.svg');
+    $buttonIcon.setAttribute('src', '/svg/icon-dice.svg');
 
     $button.appendChild($buttonIcon);
 

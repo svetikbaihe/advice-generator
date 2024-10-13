@@ -1,50 +1,33 @@
-@use '/src/assets/style/utils/colors.scss';
-
 .elevated{
-  background-color: colors.$neutral-dark-spell;
-  box-shadow: 1px 1px 5px hsl(0, 0%, 0%);
+  @apply bg-neutral-dark-spell shadow-[1px_1px_5px_hsl(0,0%,0%)];
 }
 
 .filled{
-  background-color: colors.$neutral-dark-greyish-blue;
+  @apply bg-neutral-dark-grayish-blue;
 }
 
 .outlined{
-  background-color: colors.$neutral-gentle-blue;
+  @apply bg-neutral-gentle-blue;
 }
 
-.card{
-  border-radius: 15px;
-  color: colors.$primary-light-cyan;
-  position: relative;
+.card {
+  @apply w-[12.56rem] rounded-2xl text-primary-light-cyan relative flex flex-col items-center px-6 pt-11;
+  @apply pb-[2.8rem] mx-4 gap-[1.8rem] min-[375px]:w-[21.25rem] min-[375px]:pb-16 sm:w-[33.75rem] sm:px-11;
 }
 
-.headline{
-  text-align: center;
-  text-transform: uppercase;
-  letter-spacing: 4px;
-  font-weight: 800;
+.text_area {
+  @apply flex flex-col gap-6 text-center font-extrabold;
 }
 
-.supporting_text{
-  text-align: center;
-  line-height: 1.4;
-  text-wrap: balance;
-  font-weight: 800;
+.headline {
+  @apply text-primary-neon-green uppercase tracking-[0.25rem] text-xs;
 }
 
-.media_area{
-  background: url('../../assets/svg/pattern-divider-desktop.svg') no-repeat center;
-  width: 544px;
-  height: 20px;
+.supporting_text {
+  @apply text-[1.1rem] min-[375px]:text-[1.4rem] leading-normal; 
 }
 
-@media only screen and (max-width: 645px){
-  .card {
-    width: 342px;
-  }
-
-  .media_area{
-    background: url('../../assets/svg/pattern-divider-mobile.svg') no-repeat center;
-  }
+.media_area {
+  @apply bg-[url('/svg/pattern-divider-mobile.svg')] bg-no-repeat bg-center h-5 w-[10rem];
+  @apply min-[375px]:w-[18rem] sm:w-[28rem] sm:bg-[url('/svg/pattern-divider-desktop.svg')];
 }
